@@ -6,13 +6,23 @@ import {configureStore} from '@reduxjs/toolkit'
 import {Provider} from 'react-redux'
 import './index.css';
 import App from './App';
-import CountHooks from './components/CountHooks'
+import Search from './components/Search'
+import SearchDetails from './components/SearchDetails'
 import ViewCountHooks from './components/ViewCountHooks'
 // import reducer from './reducers/reducer'
 import rootReducer from './slices/combinedSlice'
 import BaseLayout from './components/layout/BaseLayout';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import {persistStore, persistReducer} from 'redux-persist'
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist'
 import storage from 'redux-persist/lib/storage' //defaults to local storage for web
 import {PersistGate} from 'redux-persist/integration/react'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +36,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
-const store = configureStore({reducer: persistedReducer}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+    },
+  }),});
 
 let persistor = persistStore(store)
 
@@ -43,8 +60,9 @@ root.render(
       <BaseLayout>
         <Routes>
           <Route path="/" element={<App />}/>
-          <Route path='/count_hooks' element={<CountHooks />}/>
+          <Route path='/search' element={<Search />}/>
           <Route path='/view_count_hooks' element={<ViewCountHooks />}/>
+          <Route path='/job-details/:id' element={<SearchDetails />}/>
           
         </Routes>
       </BaseLayout>
