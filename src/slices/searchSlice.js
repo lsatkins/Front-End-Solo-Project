@@ -7,6 +7,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const initialState = {
   searches: {},
   currentSearch: {},
+  saved: []
 };
 
 export const searchJobs = createAsyncThunk('counter/searchJobs', async (query) => {
@@ -35,15 +36,23 @@ const searchSlice = createSlice({
   initialState,
   reducers: {
     searchJobsSuccess(state, { payload }) {
-      console.log('payload', payload);
-      console.log('state', state);
       state.currentSearch.concat(payload.jobs_results)
     },
+    saveJob(state, {payload}){
+      state.saved.push({
+        item: payload,
+        date: Date(),
+        status: 'saved'
+      })
+    },
+    removeJob(state, {payload}){
+      console.log(typeof(payload))
+      state.saved.splice(payload, 1)
+      console.log(state.saved.splice(payload, 1))
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(searchJobs.fulfilled, (state, { payload }) => {
-      console.log('payload', payload);
-      console.log('state', state);
       state.currentSearch = payload.jobs_results
       let query = findQuery(payload.search_parameters.q)
       state.searches[query] = payload.jobs_results
@@ -53,5 +62,5 @@ const searchSlice = createSlice({
 });
 
 
-export const {searchJobsSuccess} = searchSlice.actions
+export const {searchJobsSuccess, saveJob, removeJob} = searchSlice.actions
 export default searchSlice.reducer;

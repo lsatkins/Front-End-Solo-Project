@@ -1,18 +1,23 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import { useSelector } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import { useLocation } from 'react-router-dom'
+
 
 const SearchDetails = () => {
-  const { id } = useParams();
+    const location = useLocation()
+    const {from} = location.state
+    console.log(from)
   const currentList = useSelector((state) => state.search.currentSearch);
-  const searchedJob = currentList.find((job) => job.job_id === id);
+  const searchedJob = currentList.find((job) => job.job_id === from);
 
   if (!searchedJob) {
-    return <div>No job found with ID: {id}</div>;
+    return <div>No job found with ID: {from}</div>;
   }
 
   return (
+
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       <Card style={{ width: '50rem' }}>
         <Card.Body>
@@ -39,12 +44,19 @@ const SearchDetails = () => {
                 ))
             ) : null}
           </Card.Text>
+          <Card.Text>
+            <h5><b>Links:</b></h5> {Array.isArray(searchedJob.related_links) ? (
+                searchedJob.related_links.map((item) => (
+                <Card.Link key={item.text} href={item.link}>{item.text}</Card.Link>
+                ))
+            ) : null}
+          </Card.Text>
 
-          <Card.Link href="#">Save Job</Card.Link>
+          <Button variant="primary">Save Job</Button>{' '}
         </Card.Body>
       </Card>
     </div>
-  );
+     );
 };
 
 export default SearchDetails;

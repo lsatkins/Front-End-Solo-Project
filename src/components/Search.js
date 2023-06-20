@@ -1,13 +1,15 @@
 import React,{useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 // import {increment, decrement, incrementByNum, reset} from '../actions/incrementCount'
-import {searchJobs} from '../slices/searchSlice'
+import {searchJobs, saveJob, removeJob} from '../slices/searchSlice'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
 import {shortDescription} from '../functions'
 import '../css/search.css'
 import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import {getId} from '../functions'
 
 
 const CountHooks = () => {
@@ -16,11 +18,15 @@ const CountHooks = () => {
 
     const currentSearch = useSelector(state=>state.search.currentSearch)
     const searchList = useSelector(state=>state.search.searches)
+    const saved = useSelector((state)=> state.search.saved)
+
 
     const [searchItems, setSearchItems] = useState(currentSearch)
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        setSearchItems('')
 
         console.log(searchList[searchTerm])
 
@@ -37,20 +43,49 @@ const CountHooks = () => {
 
             console.log('is this happening?')
             dispatch(searchJobs(data))
+            console.log('currentSearch',currentSearch)
             setSearchItems(currentSearch)
 
         }
             // You can perform additional actions, such as making an API call or updating state with the search term
       };
 
+      const handleSaveJob = (item) => {
+        console.log('hello')
+        dispatch(saveJob(item))
+      }
+      const handleRemoveJob = (item) => {
+        console.log('hello')
+        let index = findIndex(item)
+        dispatch(removeJob(index))
+      }
+
       useEffect(() => {
+        setSearchItems(currentSearch)
          
-      }, [searchItems])
+      }, [currentSearch])
       console.log(searchItems)
     
       const handleChange = (e) => {
         setSearchTerm(e.target.value);
       };
+
+      const findIndex = (obj) => {
+        const index = saved.findIndex((item) => item.item.job_id === obj.job_id);
+        console.log('item', saved[0].item)
+        console.log('obj', obj)
+        console.log(index)
+        return index;
+      }
+
+      const checkIfSaved = (obj) => {
+        for(const item of saved){
+            if(item.item.job_id === obj.job_id){
+                return true;
+            }  
+        }
+        return false
+    }
 
   const dispatch = useDispatch()   //store.dispatch(fun)
 
@@ -64,14 +99,15 @@ const CountHooks = () => {
             <Form.Control
                 aria-label="Large"
                 aria-describedby="inputGroup-sizing-sm"
-                placeholder="web developer Alabama"
+                placeholder='example: "web developer Tuscaloosa, AL"'
                 value={searchTerm}
                 onChange={handleChange}
             />
         </InputGroup>
     </form>
+    <div className="text-center">Displaying jobs for: "{searchTerm}"</div>
 
-    <div className="row p-2">{searchItems.map((item, index)=>{
+    <div className="row p-2">{searchItems.length ? searchItems.map((item, index)=>{
         return (
             <Card className="col-4 m-2" style={{ width: '18rem' }} key={index}>
                 <Card.Body>
@@ -81,13 +117,16 @@ const CountHooks = () => {
                     <Card.Text>
                     <b>Description:</b> {shortDescription(item.description)}
                     </Card.Text>
-                    <Link className="me-4" to={`/job-details/${item.job_id}`}>View Details</Link>
-                    <Card.Link href="#">Save Job</Card.Link>
+                    <Link className="me-4" to={`/job-details/${getId(item.job_id)}`} state={{ from: item.job_id}}>View Details</Link>
+                    {checkIfSaved(item) ? (
+                        <Button onClick={()=>handleRemoveJob(item)} variant="danger">Unsave</Button>):(
+                        <Button onClick={()=>handleSaveJob(item)} variant="primary">Save Job</Button>    
+                    )}
                 </Card.Body>
             </Card>
 
         )
-    })}</div>
+    }): null}</div>
 
     </>
   )

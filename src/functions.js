@@ -1,3 +1,4 @@
+
 export const findQuery = (string) => {
 
     const cutFront = string.substring(10)
@@ -13,4 +14,14 @@ export const shortDescription = (string) => {
         string = string.substring(0, 100) + ' ...'
     }
     return string
+}
+
+export const getId = (string) => {
+    let newString = ''
+    for(let i = 0; i <string.length; i++){
+        if(string[i]!== '/'){
+            newString += string[i]
+        }
+    }
+    return newString
 }
