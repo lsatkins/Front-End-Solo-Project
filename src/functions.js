@@ -25,3 +25,13 @@ export const getId = (string) => {
     }
     return newString
 }
+
+export const sortStatus = (string, globalState) => {
+
+    let filteredArr = globalState.filter(item=>{
+        return item.status === string
+    })
+
+    return filteredArr
+
+}

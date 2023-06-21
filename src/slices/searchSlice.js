@@ -7,6 +7,7 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const initialState = {
   searches: {},
   currentSearch: {},
+  currentSearchQuery: '',
   saved: []
 };
 
@@ -41,14 +42,13 @@ const searchSlice = createSlice({
     saveJob(state, {payload}){
       state.saved.push({
         item: payload,
-        date: Date(),
+        date: new Date().toLocaleDateString(),
         status: 'saved'
       })
     },
     removeJob(state, {payload}){
       console.log(typeof(payload))
       state.saved.splice(payload, 1)
-      console.log(state.saved.splice(payload, 1))
     }
   },
   extraReducers: (builder) => {
@@ -56,7 +56,8 @@ const searchSlice = createSlice({
       state.currentSearch = payload.jobs_results
       let query = findQuery(payload.search_parameters.q)
       state.searches[query] = payload.jobs_results
-      // state.searches.push()
+      state.currentSearchQuery = query
+      console.log('hello', state.currentSearchQuery)
     });
   },
 });

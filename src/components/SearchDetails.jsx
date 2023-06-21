@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import { useSelector } from 'react-redux';
-import Button from 'react-bootstrap/Button';
 import { useLocation } from 'react-router-dom'
+import SaveButton from './SaveButton'
 
 
 const SearchDetails = () => {
@@ -21,13 +21,21 @@ const SearchDetails = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
       <Card style={{ width: '50rem' }}>
         <Card.Body>
-          <Card.Title><h1>{searchedJob.title}</h1></Card.Title>
+            <div className="d-flex justify-content-between">
+                <Card.Title><h1>{searchedJob.title}</h1></Card.Title>
+                <img height="100px" src={searchedJob.thumbnail} alt="" />
+            </div>
           <Card.Subtitle className="mb-2 text-muted">
             <h5>{searchedJob.company_name}</h5>
           </Card.Subtitle>
           <Card.Subtitle className="mb-4 text-muted">
           <h5>{searchedJob.location}</h5>
           </Card.Subtitle>
+          <ul>
+            {searchedJob.extensions.map(item=>{
+                return <li>{item}</li>
+            })}
+          </ul>
           <Card.Text>
             <h5><b>Description:</b></h5> {searchedJob.description}
           </Card.Text>
@@ -52,7 +60,7 @@ const SearchDetails = () => {
             ) : null}
           </Card.Text>
 
-          <Button variant="primary">Save Job</Button>{' '}
+          <SaveButton saveItem={searchedJob}/>
         </Card.Body>
       </Card>
     </div>

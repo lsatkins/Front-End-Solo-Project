@@ -8,7 +8,7 @@ import './index.css';
 import App from './App';
 import Search from './components/Search'
 import SearchDetails from './components/SearchDetails'
-import ViewCountHooks from './components/ViewCountHooks'
+import Tasks from './components/Tasks'
 // import reducer from './reducers/reducer'
 import rootReducer from './slices/combinedSlice'
 import BaseLayout from './components/layout/BaseLayout';
@@ -61,7 +61,7 @@ root.render(
         <Routes>
           <Route path="/" element={<App />}/>
           <Route path='/search' element={<Search />}/>
-          <Route path='/view_count_hooks' element={<ViewCountHooks />}/>
+          <Route path='/tasks' element={<Tasks />}/>
           <Route path='/job-details/:id' element={<SearchDetails />}/>
           
         </Routes>
