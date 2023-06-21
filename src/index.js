@@ -5,7 +5,7 @@ import createRoot from 'react-dom/client'
 import {configureStore} from '@reduxjs/toolkit'
 import {Provider} from 'react-redux'
 import './index.css';
-import App from './App';
+import Home from './components/Home';
 import Search from './components/Search'
 import SearchDetails from './components/SearchDetails'
 import Tasks from './components/Tasks'
@@ -59,7 +59,7 @@ root.render(
   <Router>
       <BaseLayout>
         <Routes>
-          <Route path="/" element={<App />}/>
+          <Route path="/" element={<Home />}/>
           <Route path='/search' element={<Search />}/>
           <Route path='/tasks' element={<Tasks />}/>
           <Route path='/job-details/:id' element={<SearchDetails />}/>

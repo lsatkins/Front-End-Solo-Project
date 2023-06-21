@@ -6,3 +6,13 @@
 .nav-link{
     color: white !important;
 }
+button.navbar-toggler.collapsed{
+    color: white !important;
+    background-color: white;
+}
+@media (max-width: 991px) {
+    img{
+        height: 40px !important;
+    }
+  }
+  

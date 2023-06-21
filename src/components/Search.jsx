@@ -21,7 +21,10 @@ const CountHooks = () => {
     const currentSearchQuery = useSelector((state)=> state.search.currentSearchQuery)
 
     const [submittedSearch, setSubmittedSearch] = useState(currentSearchQuery)
-    const [searchItems, setSearchItems] = useState(currentSearch)
+    const [searchItems, setSearchItems] = useState((currentSearch === {}) ? '' : currentSearch)
+
+    const keys = Object.keys(searchList)
+    console.log(keys)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -39,9 +42,7 @@ const CountHooks = () => {
                 term: searchTerm
             }
 
-            console.log('is this happening?')
             dispatch(searchJobs(data))
-            console.log('currentSearch',currentSearch)
             setSearchItems(currentSearch)
 
         }
@@ -79,10 +80,9 @@ const CountHooks = () => {
     </form>
 
     {(submittedSearch) ? (
-    <div className="text-center">Displaying jobs for: "{submittedSearch}"</div>
+    <h3 className="text-center">Displaying jobs for: "{submittedSearch}"</h3>
 ) : <div></div>}
-
-    <div className="row p-2">{(searchItems) ? searchItems.map((item, index)=>{
+    <div className="row p-2 justify-content-center">{(Object.keys(searchItems).length !== 0) ? searchItems.map((item, index)=>{
         return (
             <Card className="col-4 m-2" style={{ width: '18rem' }} key={index}>
                 <Card.Body className="d-flex flex-column">

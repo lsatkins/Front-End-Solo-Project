@@ -35,7 +35,7 @@ const handleSaveJob = (item) => {
     <>
     
     {checkIfSaved(saveItem) ? (
-        <Button onClick={()=>handleRemoveJob(saveItem)} variant="danger">Remove</Button>):(
+        <Button style={{height: "38px"}} onClick={()=>handleRemoveJob(saveItem)} variant="danger">Remove</Button>):(
         <Button onClick={()=>handleSaveJob(saveItem)} variant="primary">Save</Button>    
     )}
     

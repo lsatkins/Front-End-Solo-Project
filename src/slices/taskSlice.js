@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 // Define the todos slice
-const todosSlice = createSlice({
-    name: 'todos',
+const taskSlice = createSlice({
+    name: 'task',
     initialState: [],
     reducers: {
       addTodo(state, action) {
@@ -14,4 +14,6 @@ const todosSlice = createSlice({
     },
   });
 
-  export default todosSlice
+  export const {addTodo, removeTodo} = taskSlice.actions
+
+  export default taskSlice.reducer

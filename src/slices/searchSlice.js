@@ -43,25 +43,38 @@ const searchSlice = createSlice({
       state.saved.push({
         item: payload,
         date: new Date().toLocaleDateString(),
-        status: 'saved'
+        status: 'Saved'
       })
     },
     removeJob(state, {payload}){
-      console.log(typeof(payload))
       state.saved.splice(payload, 1)
+    },
+    updateStatus(state, {payload}){
+      let index = state.saved.findIndex(object => object.item.job_id === payload.obj.item.job_id)
+      console.log(index)
+      state.saved[index] = {
+        item: payload.obj.item,
+        date: new Date().toLocaleDateString(),
+        status: payload.value
+      }
+    },
+    updateSearchList(state, {payload}){
+      delete state.searches[payload]
     }
   },
   extraReducers: (builder) => {
     builder.addCase(searchJobs.fulfilled, (state, { payload }) => {
       state.currentSearch = payload.jobs_results
       let query = findQuery(payload.search_parameters.q)
-      state.searches[query] = payload.jobs_results
+      state.searches[query] = {
+        results: payload.jobs_results,
+        date: new Date().toLocaleDateString()
+      }
       state.currentSearchQuery = query
-      console.log('hello', state.currentSearchQuery)
     });
   },
 });
 
 
-export const {searchJobsSuccess, saveJob, removeJob} = searchSlice.actions
+export const {searchJobsSuccess, saveJob, removeJob, updateStatus, updateSearchList} = searchSlice.actions
 export default searchSlice.reducer;
