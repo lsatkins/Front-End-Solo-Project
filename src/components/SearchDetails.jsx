@@ -3,14 +3,28 @@ import Card from 'react-bootstrap/Card';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom'
 import SaveButton from './SaveButton'
+import '../css/details.css'
 
 
 const SearchDetails = () => {
     const location = useLocation()
     const {from} = location.state
-    console.log(from)
+    console.log('from',from)
   const currentList = useSelector((state) => state.search.currentSearch);
-  const searchedJob = currentList.find((job) => job.job_id === from);
+  const saved = useSelector((state=> state.search.saved))
+  let searchedJob = currentList.find((job) => job.job_id === from);
+  if(searchedJob){
+    console.log('job found in currentList')
+  }
+  else{
+    console.log('searching through saved')
+    console.log(saved)
+    for(let entry of saved){
+        if(entry.item.job_id === from){
+            searchedJob = entry.item
+        }
+    }
+  }
 
   if (!searchedJob) {
     return <div>No job found with ID: {from}</div>;
@@ -18,13 +32,15 @@ const SearchDetails = () => {
 
   return (
 
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-      <Card style={{ width: '50rem' }}>
+    <div className='details' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+      <Card className="border-dark border-2" style={{ width: '50rem' }}>
         <Card.Body>
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-center">
                 <Card.Title><h1>{searchedJob.title}</h1></Card.Title>
-                <img height="100px" src={searchedJob.thumbnail} alt="" />
             </div>
+            <div className="underTitle">
+            <div className="locationAndPic d-flex justify-content-between">
+                <div className="location">
           <Card.Subtitle className="mb-2 text-muted">
             <h5>{searchedJob.company_name}</h5>
           </Card.Subtitle>
@@ -36,6 +52,9 @@ const SearchDetails = () => {
                 return <li>{item}</li>
             })}
           </ul>
+          </div>
+          <img className='image' src={searchedJob.thumbnail} alt="" />
+          </div>
           <Card.Text>
             <h5><b>Description:</b></h5> {searchedJob.description}
           </Card.Text>
@@ -52,8 +71,9 @@ const SearchDetails = () => {
                 ))
             ) : null}
           </Card.Text>
+          </div>
           <Card.Text>
-            <h5><b>Links:</b></h5> {Array.isArray(searchedJob.related_links) ? (
+            <h5><b className="links">Links:</b></h5> {Array.isArray(searchedJob.related_links) ? (
                 searchedJob.related_links.map((item) => (
                 <Card.Link key={item.text} href={item.link}>{item.text}</Card.Link>
                 ))

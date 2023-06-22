@@ -62,7 +62,6 @@ const searchSlice = createSlice({
       delete state.searches[payload]
     },
     clickedDropDown(state,{payload}){
-      console.log('is this working??????')
       state.currentSearch = payload.array;
       state.currentSearchQuery = payload.query
     }

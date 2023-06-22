@@ -1,6 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {updateSearchList} from '../slices/searchSlice'
+import '../css/home.css'
 
 const Home = () => {
 
@@ -23,6 +24,12 @@ const Home = () => {
 
   return (
     <>
+
+    <div className='backGround'>
+
+        <img className='logo' style={{height: '50px'}}src="./images/jobtrackr-high-resolution-logo-white-on-transparent-background.png" alt="" />
+
+    </div>
     
     
     </>

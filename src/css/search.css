@@ -6,6 +6,7 @@ div .card{
     padding-left: 20px;
     border-left: solid lightgray 1px;
     border-right: solid lightgray 1px;
+    background-color: white;
 }
 .searchOption:hover{
     background-color: blue;
@@ -14,4 +15,18 @@ div .card{
 }
 .searchOption:last-child{
     border-bottom: solid lightgray 1px;
+}
+.afterTitle{
+    background-color: rgb(0,128,255,0.1);
+    padding: 10px;
+    color: black;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
+.rightAfter{
+    color: rgb(1,12,128) !important;
+}
+.display{
+    color: white;
+    margin-top: 10px
 }

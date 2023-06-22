@@ -120,25 +120,27 @@ const CountHooks = () => {
                 )}
     </div>
     {(submittedSearch) ? (
-    <h3 className="text-center">Displaying jobs for: "{submittedSearch}"</h3>
+    <h3 className="text-center display">Displaying jobs for: "{submittedSearch}"</h3>
 ) : <div></div>}
     <div className="row p-2 justify-content-center">{(Object.keys(searchItems).length !== 0) ? searchItems.map((item, index)=>{
         return (
-            <Card className="col-4 m-2" style={{ width: '18rem' }} key={index}>
+            <Card className="col-4 m-2 border-dark border-2" style={{ width: '18rem' }} key={index}>
                 <Card.Body className="d-flex flex-column">
                     <Card.Title className="mb-3">{item.title}</Card.Title>
+                    <div className="afterTitle">
                     <div className="row">
                         <div className="col-8 d-flex align-items-center pe-0">
-                        <Card.Subtitle className="mb-2 text-muted text-center">{item.company_name}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 rightAfter">{item.company_name}</Card.Subtitle>
                         </div>
                         <div className="col-4 ps-0">
                             <img width="50px" src={item.thumbnail} alt="" />
                         </div>
                     </div>
-                    <Card.Subtitle className="mb-2 text-muted">{item.location}</Card.Subtitle>
+                    <Card.Subtitle className="mb-2 rightAfter">{item.location}</Card.Subtitle>
                     <Card.Text>
                     <b>Description:</b> {shortDescription(item.description)}
                     </Card.Text>
+                    </div>
                     <div className="mt-auto">
                     <Link className="me-4" to={`/job-details/${getId(item.job_id)}`} state={{ from: item.job_id}}>View Details</Link>
                     <SaveButton saveItem={item}/>

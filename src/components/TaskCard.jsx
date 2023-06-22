@@ -8,7 +8,7 @@ import '../css/taskCard.css'
 function TaskCard({obj}) {
     console.log(obj)
   return (
-    <Card className="mb-2" style={{ width: '18rem' }}>
+    <Card className="mb-2 border-dark border-2" style={{ width: '18rem' }}>
       <Card.Body>
         <Card.Title>{obj.item.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Status: {obj.status}</Card.Subtitle>
