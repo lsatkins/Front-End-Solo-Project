@@ -1,3 +1,17 @@
 div .card{
     display: flex
 }
+.searchOption{
+    margin-left: 141px;
+    padding-left: 20px;
+    border-left: solid lightgray 1px;
+    border-right: solid lightgray 1px;
+}
+.searchOption:hover{
+    background-color: blue;
+    color: white;
+
+}
+.searchOption:last-child{
+    border-bottom: solid lightgray 1px;
+}

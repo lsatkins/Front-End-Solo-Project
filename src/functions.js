@@ -10,6 +10,8 @@ export const findQuery = (string) => {
 }
 
 export const shortDescription = (string) => {
+    console.log('string',string.length)
+    
     if(string.length > 100){
         string = string.substring(0, 100) + ' ...'
     }
@@ -34,4 +36,12 @@ export const sortStatus = (string, globalState) => {
 
     return filteredArr
 
+}
+
+export const searchLoop = (object) => {
+    let array = [];
+    for(let el in object){
+        array.push(object[el]);
+    }
+    return array;
 }

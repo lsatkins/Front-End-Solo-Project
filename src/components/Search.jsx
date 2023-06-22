@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 // import {increment, decrement, incrementByNum, reset} from '../actions/incrementCount'
-import {searchJobs} from '../slices/searchSlice'
+import {searchJobs, clickedDropDown} from '../slices/searchSlice'
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Card from 'react-bootstrap/Card';
@@ -24,7 +24,6 @@ const CountHooks = () => {
     const [searchItems, setSearchItems] = useState((currentSearch === {}) ? '' : currentSearch)
 
     const keys = Object.keys(searchList)
-    console.log(keys)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,7 +31,9 @@ const CountHooks = () => {
         setSearchItems('')
 
         if(searchList[searchTerm]){
-            setSearchItems(searchList[searchTerm])
+            console.log('here')
+            console.log(searchList[searchTerm])
+            setSearchItems(searchList[searchTerm].results)
         }
         else{
 
@@ -60,6 +61,39 @@ const CountHooks = () => {
         setSearchTerm(e.target.value);
       };
 
+      const handleSearchOption = (item) => {
+        setSearchTerm(item);
+        console.log(setSearchTerm);
+      
+        const selectedSearch = searchList[item];
+      
+        if (selectedSearch) {
+          setSearchItems(selectedSearch.results);
+          console.log(selectedSearch.results)
+          setSubmittedSearch(item);
+        } else {
+          // Handle form submission logic here
+          console.log('Form submitted with search term:', item);
+          let data = {
+            term: item
+          };
+        }
+        dispatch(clickedDropDown({
+            query: item,
+            array: selectedSearch.results
+          }));
+        setSearchItems(currentSearch);
+      
+        
+      };
+      
+
+      const filteredItems = keys.filter((item) =>
+        (searchTerm !== '') && (item.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+      console.log('filtered', filteredItems)
+      console.log(searchTerm)
+
   const dispatch = useDispatch()   //store.dispatch(fun)
 
   
@@ -78,7 +112,13 @@ const CountHooks = () => {
             />
         </InputGroup>
     </form>
-
+    <div className="searchBorder">
+    {filteredItems.length > 0 ? (
+                filteredItems.map((item, index) => <div onClick={()=> handleSearchOption(item)} className="searchOption" key={index}>{item}</div>)
+                ) : (
+                    <div></div>
+                )}
+    </div>
     {(submittedSearch) ? (
     <h3 className="text-center">Displaying jobs for: "{submittedSearch}"</h3>
 ) : <div></div>}

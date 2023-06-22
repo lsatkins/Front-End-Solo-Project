@@ -60,6 +60,11 @@ const searchSlice = createSlice({
     },
     updateSearchList(state, {payload}){
       delete state.searches[payload]
+    },
+    clickedDropDown(state,{payload}){
+      console.log('is this working??????')
+      state.currentSearch = payload.array;
+      state.currentSearchQuery = payload.query
     }
   },
   extraReducers: (builder) => {
@@ -76,5 +81,5 @@ const searchSlice = createSlice({
 });
 
 
-export const {searchJobsSuccess, saveJob, removeJob, updateStatus, updateSearchList} = searchSlice.actions
+export const {searchJobsSuccess, saveJob, removeJob, updateStatus, updateSearchList, clickedDropDown} = searchSlice.actions
 export default searchSlice.reducer;
