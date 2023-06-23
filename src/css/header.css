@@ -1,0 +1,22 @@
+.custom-navbar{
+    background-color: rgb(1,12,128);
+    height: 60px;
+    margin-bottom: 60px;
+    /* border-bottom: solid black 3px; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Customize the box shadow values */
+}
+.nav-link{
+    color: white !important;
+}
+.nav-link:hover{
+    color: rgb(119,212,252) !important;
+}
+button.navbar-toggler.collapsed{
+    color: white !important;
+    background-color: white;
+}
+img{
+    height: 40px !important;
+}
+
+  

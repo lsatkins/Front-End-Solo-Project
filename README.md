@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+# JobTrackr (Front-end Mobile Project)
+JobTrackr is a web application designed to help users search for job opportunities, view job details, save preferred jobs, and track the status of their applications. The app provides a user-friendly interface that streamlines the job search process and helps users stay organized throughout their job hunt.
+<br/><br/>
+## Live Link: 🔗
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Access our site at (link)
+<br/><br/>
+## Table of Contents: 📚
+* [Technologies](#tech)<br/>
+* [About JobTrackr](#about)<br/>
+* [Screenshots](#screen)<br/>
+* [Status](#status)<br/>
+* [Credits](#credits)
 
-## Available Scripts
 
-In the project directory, you can run:
+<br/><br/>
+## <a id="tech">Technologies: 💻</a>
 
-### `npm start`
+- JavaScript
+- Bootstrap CSS
+- React.js
+- Reduxjs/toolkit
+- Redux-persist
+- API: <a class="apiLink" href="https://serpapi.com/google-jobs-api">Serpapi (Jobs)</a>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/><br/>
+## <a id="about">About JobTrackr: </a>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### <b>Search Jobs:</b><br>
+The search jobs page in the JobTrackr application offers users a seamless and efficient job search experience. Users can enter search criteria and browse relevant job listings. The page provides dynamic search suggestions, visually appealing job cards, and options to save and explore job details. With responsive design and user-friendly features, the search jobs page enhances the overall job search process within JobTrackr.
 
-### `npm test`
+### <b>Job Details:</b><br>
+The job details page in the JobTrackr application provides users with comprehensive information about a specific job listing. Users are directed to this page from search results or saved jobs. The page displays key details such as the job title, company name, location, description, job highlights, and related links. Users can easily save the job or access external links for further exploration. With its well-structured layout and intuitive design, the job details page offers an immersive experience for users to delve into the specifics of a job listing within the JobTrackr app.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### <b>Tasks Page:</b><br>
+The tasks page in the JobTrackr app allows users to manage and track their job application progress effectively. With a user-friendly interface, the page displays three sections: Saved, Applied, and Interviewed. Each section presents a list of tasks corresponding to the respective status. The tasks are dynamically sorted and rendered based on the status and saved job data stored in the application state. Users can easily navigate through their tasks, view important details, and update the status of each job application accordingly. The tasks page provides a streamlined workflow for users to stay organized and monitor their progress as they pursue various job opportunities.
 
-### `npm run build`
+<br/><br/>
+## <a id="screen">Screenshots: 📷</a>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### <b>Home:</b><br>
+<img src="public/images/localhost_3000_(Nest Hub Max).png" alt="home" width="400px"></img>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### <b>Search Jobs:</b><br>
+<img src="public/images/localhost_3000_search(Nest Hub Max).png" alt="search jobs" width="400px"></img>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### <b>Job Details:</b><br>
+<img src="public/images/localhost_3000_search(Nest Hub Max) (1).png" alt="job details" width="400px"></img>
 
-### `npm run eject`
+### <b>Tasks:</b><br>
+<img src="public/images/localhost_3000_tasks(Nest Hub Max).png" alt="tasks" width="400px"></img>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<br/><br/>
+## <a id="status">Status: 📶</a>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+JobTrackr is in beta stage of development.<br>This was a 1 week front-end project built by Hunter starting week 13 and ending week 14 of DigitalCrafts Bootcamp.
+<br/><br/>
+## <a id="credits">Credits: 🙌</a>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Contributors: 
+<a href="https://www.linkedin.com/in/huntera11/">Hunter Atkins</a><br>
+<img src="public/images/Image.jpeg" alt="" height="137px"></img>
+<br>
