@@ -10,13 +10,15 @@ function TaskCard({obj}) {
   return (
     <Card className="mb-2 border-dark border-2" style={{ width: '18rem' }}>
       <Card.Body>
+        <div className='cardContents'>
         <Card.Title>{obj.item.title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">Status: {obj.status}</Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">Last Updated: {obj.date}</Card.Subtitle>
         <div className="d-flex justify-content-between">
-        <Link className="me-4" to={`/job-details/${getId(obj.item.job_id)}`} state={{ from: obj.item.job_id}}>View Details</Link>
+        <Link className="me-1" to={`/job-details/${getId(obj.item.job_id)}`} state={{ from: obj.item.job_id}}>View Details</Link>
         <TaskDropdown statusObj={obj}/>
         <SaveButton saveItem={obj.item}/>
+        </div>
         </div>
       </Card.Body>
     </Card>

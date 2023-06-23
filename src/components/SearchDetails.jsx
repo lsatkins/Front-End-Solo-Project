@@ -73,7 +73,7 @@ const SearchDetails = () => {
           </Card.Text>
           </div>
           <Card.Text>
-            <h5><b className="links">Links:</b></h5> {Array.isArray(searchedJob.related_links) ? (
+            <h5 className='mt-2'><b className="links">Links:</b></h5> {Array.isArray(searchedJob.related_links) ? (
                 searchedJob.related_links.map((item) => (
                 <Card.Link key={item.text} href={item.link}>{item.text}</Card.Link>
                 ))

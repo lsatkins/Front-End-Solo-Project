@@ -22,6 +22,7 @@ div .card{
     color: black;
     margin-bottom: 5px;
     border-radius: 5px;
+    border: solid black 1px;
 }
 .rightAfter{
     color: rgb(1,12,128) !important;
@@ -29,4 +30,7 @@ div .card{
 .display{
     color: white;
     margin-top: 10px
+}
+.searchImage{
+    border: solid black 1px;
 }

@@ -7,16 +7,23 @@
     padding: 20px;
     color: black;
     border-radius: 10px;
+    border: solid black 1px;
 }
 h5{
     color: rgb(1,12,128) !important;
 }
 .links{
-    color: black
+    color: black;
 }
 h1{
     text-align: center;
 }
 .image{
     height: 130px !important;
+    border: solid black 1px;
+}
+@media (max-width: 560px){
+    .image{
+        height: 50px !important;
+    }
 }

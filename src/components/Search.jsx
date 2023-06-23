@@ -133,7 +133,7 @@ const CountHooks = () => {
                         <Card.Subtitle className="mb-2 rightAfter">{item.company_name}</Card.Subtitle>
                         </div>
                         <div className="col-4 ps-0">
-                            <img width="50px" src={item.thumbnail} alt="" />
+                            <img className="searchImage" width="50px" src={item.thumbnail} alt="" />
                         </div>
                     </div>
                     <Card.Subtitle className="mb-2 rightAfter">{item.location}</Card.Subtitle>
